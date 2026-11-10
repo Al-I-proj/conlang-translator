@@ -148,35 +148,69 @@ def newThesarusAsDict():
     f = open("documents/newThesarus.txt", "r", encoding="utf-8").read()
     t = f.split("\n")
     d = {}
-    # d[firstLetter][secondLetter][word type][Word] = synonyms
+    # d[firstLetter][secondLetter][word][word type] = synonyms
     letter1 = "a"
     letter2 = "a"
     wt = ""
     word = ""
     for line in t:
-        if line[0] != "-":
-            if len(line) > 3:
-                if line[:3] == "***":
-                    letter1 = line[-1].lower()
-            if len(line) > 1:
+        if line[0] != "*":
+            if line[0] == "-":
+                        # Find word type based on the items immediately following the dashes up to the first space
+                        ""
+                        space1 = line.index(" ")
+                        space2 = line[space1 + 1:].index(" ") + space1
+                        wt = line[2:space1]
+            else:
+                letter1 = line[0]
                 letter2 = line[1]
-            if line[0] != "*":
                 #Find word type based on the items between the first and second space
                 space1 = line.index(" ")
-                space2 = line[space1:].index(" ") + space1
-                wt = line[space1:space2]
+                space2 = line[space1 + 1:].index(" ") + space1
+                wt = line[space1 + 1:space2]
                 #Identify the word based on first space
                 word = line[:space1]
-        else:
-            # TODO: Make a system to find word type based on the items immediately following the dashes
-            # up to the first space
-            ""
-            space1 = line.index(" ")
-            space2 = line[space1:].index(" ") + space1
-            wt = line[2:space1]
+    
 
-        #TODO: Make system to identify different definitions
-        
-        #TODO: Make system to split up the list of synonyms
-        
-sortOxford()
+        if line[0] != "*":
+            #Identify different definitions
+            sections = multiSplit(line[space2 + 2:], ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"])
+            for sec in sections:
+                #Ignore the empty sections from multi digit labels
+                if len(sec) > 0:
+                    #Split definition into synonyms
+                    syns = multiSplit(sec, [", ", "; "])
+                    if len(syns[-1]) > 0:
+                        if syns[-1][-1] == ".":
+                            syns[-1] = syns[-1][:-1]
+                    if len(syns[0]) > 0:
+                        if syns[0][0] == " ":
+                            syns[0] = syns[0].strip()
+                    syns2 = []
+                    for i in range(len(syns)):
+                        if len(syns[i]) > 0:
+                            syns2 += [syns[i].strip()]
+                    syns = syns2
+                    if letter1 in d:
+                        if letter2 in d[letter1]:
+                            if word in d[letter1][letter2]:
+                                if wt in d[letter1][letter2][word]:  
+                                    d[letter1][letter2][word][wt] += [syns]
+                                else:
+                                    d[letter1][letter2][word][wt] = [syns]
+                            else:
+                                d[letter1][letter2][word] = {}
+                                d[letter1][letter2][word][wt] = [syns]
+                        else:
+                            d[letter1][letter2] = {}
+                            d[letter1][letter2][word] = {}
+                            d[letter1][letter2][word][wt] = [syns]
+                    else:
+                        d[letter1] = {}
+                        d[letter1][letter2] = {}
+                        d[letter1][letter2][word] = {}
+                        d[letter1][letter2][word][wt] = [syns]
+    return d
+
+d = newThesarusAsDict()
+    
