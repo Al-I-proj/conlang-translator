@@ -1,3 +1,16 @@
+"""
+Key notes on thesarus:
+    - dictionary form [first letter][second letter][word][word type] = [[synonyms set 1], [synonyms set 2], ...]
+    - various synonyms are multi word
+    - various synonyms include sections in parenthes where the term is acceptible with or without an added portion
+    - Some terms are labelled with notes on specific uses including:
+        ["Colloq", "Slang", "Taboo", "Archaic", "Old-fashioned", "Technical", "Literary"
+              "Brit", "US", "Australian", "Canadian", "New Zealand", "Offensive"]
+        - these have been left in to allow more accurate translations (particularly in the case of Offensive)
+    
+        
+"""
+
 def findSynonyms(word, part_of_speech):
     # If  this word is recorded in the thesarus, return the list of synonyms
     f = open("documents/thesarus_dictionary.txt", "r").read()
@@ -21,10 +34,6 @@ def sortOxford():
         newText += line
         newText += "\n"
     newText = removeTabs(newText)
-    labels = ["Colloq", "Slang", "Taboo", "Archaic", "Old-fashioned", "Technical", "Literary"
-              "Brit", "US", "Australian", "Canadian", "New Zealand"]
-    for label in labels:
-        newText = newText.replace(" " + label + " ", " ")
     newText = oneLineEntries(newText)
     # starting line = 116
     #newText = removeExamples(newText)
@@ -224,5 +233,4 @@ def newThesarusAsDict():
                         d[letter1][letter2][word][wt] = [syns]
     return d
 
-d = newThesarusAsDict()
     
