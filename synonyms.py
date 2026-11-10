@@ -10,6 +10,7 @@ def multiSplit(text, splitters):
     return t.split("[{[*[SPLITTER]*]}]")
 
 def sortOxford():
+    """ Take the text of the Oxford Thesarus copy and sort it into a format easily ledgible by a computer"""
     f = open("documents/OxfordThesarus.txt", "r", encoding="utf-8").read()
     current_section = "A"
     # starting line = 753
@@ -36,6 +37,7 @@ def sortOxford():
     print("DONE")
 
 def removeTabs(text):
+    """ Remove all the tabs at the fronts of lines"""
     newText = ""
     t = text.split("\n")
     for line in t:
@@ -53,6 +55,8 @@ def removeTabs(text):
     return newText[:-1]
                 
 def oneLineEntries(text):
+    """ Sort the lines so all lines seperated by only one return are written on one line. 
+    Keep those seperated by multiple seperate"""
     newText = ""
     t = text.split("\n")
     for line in t:
@@ -63,6 +67,8 @@ def oneLineEntries(text):
     return newText
 
 def removeExamples(text):
+    """Remove the examples from the lists of synonyms (based on the format of the oxford thesarus"""
+    #Note: This version has been replaced by removeExamples2 due to errors in examples with numbers in them
     newText = ""
     t = text.split("\n") 
     for line in t:
@@ -88,6 +94,7 @@ def removeExamples(text):
     return newText[:-1]
 
 def removeExamples2(text):
+    """Remove the examples from the lists of synonyms (based on the format of the oxford thesarus"""
     newText = ""
     t = text.split("\n") 
     for line in t:
@@ -103,6 +110,7 @@ def removeExamples2(text):
     return newText[:-1]
 
 def removeDividers(text):
+    """ remove the oxford thesarus dividing lines (except for the letter labels)"""
     newText = ""
     t = text.split("\n")
     for line in t:
@@ -116,6 +124,7 @@ def removeDividers(text):
     return newText[:-1]
 
 def removeFrontSpace(text):
+    """ Remove excess spacing around entries"""
     newText = ""
     t = text.split("\n")
     for line in t:
@@ -145,6 +154,9 @@ def polish(text):
     return newText[:-1]
 
 def newThesarusAsDict():
+    """ Convert the sorted newThesarus.txt into a dictionary for easy look up.
+    This includes alphabetization by first and second letter to improve speed of processing, word types to 
+    differentiate word contexts, and a list of lists of synonyms to allow for words with more than one meaning."""
     f = open("documents/newThesarus.txt", "r", encoding="utf-8").read()
     t = f.split("\n")
     d = {}
