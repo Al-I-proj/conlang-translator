@@ -1,17 +1,30 @@
-def identifySentence(sentence):
-    
-    return
+import baseFunctions
+
 
 def englishWords():
     f = open("documents/englishWordsFormatted.txt", "r", encoding="utf-8").read()
     f = f.split("\n")
     englishWords = {}
     for line in f:
-        s = line.split("(")
-        englishWords[s[0][:-1]] = s[1][:s[1].index(")")]
+        if len(line) > 0:
+            s = line.split("(")
+            englishWords[s[0][:-1]] = baseFunctions.multiSplit(s[1][:s[1].index(")")], [", ", " & "])
     return englishWords
 
 words = englishWords()
+
+def identifySentence(sentence):
+    s = sentence.split(" ")
+    findAdverbs(s)
+    return
+
+def findAdverbs(s):
+    potAdv = [False](len(s))
+    for i in range(len(s)):
+        if s[i] in words:
+            if "adv" in words[s[i]]:
+                potAdv[i] = True
+
 
 def unconjugate(verb):
     irregularPastSimple = {}
@@ -71,3 +84,4 @@ def unconjugate(verb):
         "d": ["did", "would"],
         "ll": ["will", "shall"]
     }
+

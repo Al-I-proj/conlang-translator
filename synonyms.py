@@ -10,17 +10,12 @@ Key notes on thesarus:
     
         
 """
+import baseFunctions
 
 def findSynonyms(word, part_of_speech):
     # If  this word is recorded in the thesarus, return the list of synonyms
     f = open("documents/thesarus_dictionary.txt", "r").read()
     f.split("\n")
-
-def multiSplit(text, splitters):
-    t = text
-    for splitter in splitters:
-        t = t.replace(splitter, "[{[*[SPLITTER]*]}]")
-    return t.split("[{[*[SPLITTER]*]}]")
 
 def sortOxford():
     """ Take the text of the Oxford Thesarus copy and sort it into a format easily ledgible by a computer"""
@@ -82,7 +77,7 @@ def removeExamples(text):
     t = text.split("\n") 
     for line in t:
         num = 1
-        defs = multiSplit(line, ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"])
+        defs = baseFunctions.multiSplit(line, ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"])
         if type(defs) is str:
             if ":" in defs:
                 print(defs)
@@ -195,12 +190,12 @@ def newThesarusAsDict():
 
         if line[0] != "*":
             #Identify different definitions
-            sections = multiSplit(line[space2 + 2:], ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"])
+            sections = baseFunctions.multiSplit(line[space2 + 2:], ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"])
             for sec in sections:
                 #Ignore the empty sections from multi digit labels
                 if len(sec) > 0:
                     #Split definition into synonyms
-                    syns = multiSplit(sec, [", ", "; "])
+                    syns = baseFunctions.multiSplit(sec, [", ", "; "])
                     if len(syns[-1]) > 0:
                         if syns[-1][-1] == ".":
                             syns[-1] = syns[-1][:-1]
