@@ -200,12 +200,60 @@ def contractionsBreakdown(sentence):
     return breakdown
 
 def markProperNouns(breakdown):
-    for i in range(len(breakdown)):
+    for a in range(len(breakdown) - 1):
+        i = a + 1
         word = breakdown[i].base
         if word[0] == word[0].upper() and word[-1] != word[-1].upper():
             breakdown[i] = wordInfo(word, ["proper noun"])
     return 
 
+def findBaseWords(breakdown):
+
+    for i in range(len(breakdown)):
+        word = breakdown[i].base
+        if word not in words[word[0]]:
+            nextCheck = True
+            if nextCheck:
+                if word[:-1] in words[word[0]] and word[-1] == "s":
+                    if "nouns" in words[word[0]] or "verbs" in words[word[0]]:
+                        breakdown[i].base = word[:-1] 
+                        if "nouns" in words[word[0]][word[:-1]]:
+                            breakdown[i].wt += "nouns"
+                            breakdown[i].agreement["nouns"] = ["plur"]
+                        if "verbs" in words[word[0]][word[:-1]]:
+                            breakdown[i].wt += "verbs"
+                            breakdown[i].agreement["verbs"] = ["3rd sing"]
+                        nextCheck = False
+            if nextCheck:
+                if (word[:-2] in words[word[0]] and 
+                    word[-2:] == "es" and (
+                    word[-3] in ["s", "z", "x", "o"] or
+                    word[-4:-3] in ["ch", "dg", "sh"])):
+                    if "nouns" in words[word[0]] or "verbs" in words[word[0]]:
+                        breakdown[i].base = word[:-2] 
+                        if "nouns" in words[word[0]][word[:-2]]:
+                            breakdown[i].wt += "nouns"
+                            breakdown[i].agreement["nouns"] = ["plur"]
+                        if "verbs" in words[word[0]][word[:-2]]:
+                            breakdown[i].wt += "verbs"
+                            breakdown[i].agreement["verbs"] = ["3rd sing"]
+                        nextCheck = False
+            if nextCheck:
+                if word[:-3] + "y" in words[word[0]] and word[-3:] == "ies":
+                    if "nouns" in words[word[0]][word[:-3] + "y"] or "verbs" in words[word[0]][word[:-3] + "y"]:
+                        breakdown[i].base = word[:-1] + "y"
+                        if "nouns" in words[word[0]][word[:-3] + "y"] :
+                            breakdown[i].wt += "nouns"
+                            breakdown[i].agreement["nouns"] = ["plur"]
+                        if "verbs" in words[word[0]][word[:-3] + "y"] :
+                            breakdown[i].wt += "verbs"
+                            breakdown[i].agreement["verbs"] = ["3rd sing"]
+                        nextCheck = False
+
+
+                
+                    
+    return
 
 
 def identifySentence(sentence):
@@ -245,11 +293,6 @@ def checkVariations(word):
                         s[2] += ["verbs"]
     return s
     
-
-        
-    
-
-
 def unconjugate(verb):
     modal = ["will", "may", "can", "shall", "must", "ought", "do", "need", "dare", "had better", "used"]
     # [I, you/we/they, he/she, infinative]
@@ -290,6 +333,8 @@ def unconjugate(verb):
         "d": ["did", "would"],
         "ll": ["will", "shall"]
     }
+
+
 
 def testContrationsBreakdown():
     testPhrases = ["test with no contractions", "can't", "they're", "don't", "I'm", "I'd go", "I'd gone"]

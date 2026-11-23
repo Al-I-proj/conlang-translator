@@ -1,0 +1,1086 @@
+spirit, vitality
+n.
+try, attempt
+n.
+advance, proceed physically
+v.
+operate, function
+v.
+span, stretch
+v.
+contribute, work towards an end
+v.
+agree, harmonize
+v.
+die, collapse
+v.
+elapse
+v.
+endure
+v.
+Show more
+spirit, vitality
+n.
+try, attempt
+n.
+advance, proceed physically
+v.
+operate, function
+v.
+span, stretch
+v.
+contribute, work towards an end
+v.
+agree, harmonize
+v.
+die, collapse
+v.
+elapse
+v.
+endure
+v.
+NOUN
+spirit, vitality
+Synonyms
+STRONG
+activity
+animation
+bang
+birr
+drive
+energy
+force
+get-up-and-go
+hardihood
+life
+moxie
+oomph
+pep
+potency
+push
+snap
+starch
+tuck
+verve
+vigor
+vivacity
+zest
+Antonyms
+STRONG
+apathy
+discouragement
+dullness
+idleness
+inactivity
+laziness
+lethargy
+window.CMAS_API = window.CMAS_API || { que: [] };
+      (function () {
+        var INTERVAL_MS = 250;
+        var DEADLINE_MS = 30000;
+        var waited = 0;
+        var timer = setInterval(function () {
+          var widget =
+            window.anyclip && typeof window.anyclip.getWidget === 'function'
+              ? window.anyclip.getWidget()
+              : null;
+          if (widget) {
+            clearInterval(timer);
+            window.CMAS_API.que.push(function () {
+              window.CMAS_API.setVideoPlayer(widget, {
+                vendor: window.CMAS_VIDEO_VENDOR.ANYCLIP,
+                name: 'anyclip:0011r00002KyO15AAF_M8144'
+              });
+            });
+            return;
+          }
+          waited += INTERVAL_MS;
+          if (waited
+= DEADLINE_MS) {
+            clearInterval(timer);
+          }
+        }, INTERVAL_MS);
+      })();
+NOUN
+try, attempt
+Synonyms
+STRONG
+bid
+crack
+effort
+essay
+fling
+pop
+shot
+slap
+stab
+turn
+whack
+whirl
+VERB
+advance, proceed physically
+Synonyms
+STRONGEST
+flee
+fly
+leave
+move
+pass
+progress
+retire
+travel
+STRONG
+abscond
+approach
+cruise
+decamp
+depart
+escape
+exit
+fare
+hie
+hightail
+journey
+lam
+mosey
+near
+quit
+repair
+split
+vamoose
+wend
+withdraw
+WEAK
+beat it
+bug out
+get away
+get going
+get lost
+get off
+hit the road
+light out
+make a break for it
+make for
+make one's way
+move out
+pull out
+push off
+push on
+run along
+run away
+set off
+shove off
+skip out
+take a hike
+take a powder
+take flight
+take leave
+take off
+Antonyms
+STRONGEST
+remain
+stay
+stop
+STRONG
+arrive
+wait
+VERB
+operate, function
+Synonyms
+STRONGEST
+continue
+move
+run
+score
+work
+STRONG
+act
+click
+flourish
+last
+maintain
+perform
+persist
+prosper
+succeed
+thrive
+WEAK
+carry on
+make out
+pan out
+Antonyms
+STRONGEST
+cease
+halt
+stop
+STRONG
+fail
+VERB
+span, stretch
+Synonyms
+STRONGEST
+extend
+lead
+make
+range
+reach
+run
+STRONG
+connect
+cover
+fit
+spread
+vary
+WEAK
+give access
+VERB
+contribute, work towards an end
+Synonyms
+STRONGEST
+come
+develop
+happen
+proceed
+serve
+turn
+STRONG
+avail
+befall
+chance
+concur
+conduce
+eventuate
+fare
+incline
+occur
+persevere
+persist
+result
+tend
+transpire
+wax
+WEAK
+fall out
+lead to
+turn out
+work out
+Antonyms
+STRONGEST
+cease
+halt
+stop
+STRONG
+cause
+give up
+leave
+quit
+WEAK
+stay
+VERB
+agree, harmonize
+Synonyms
+STRONGEST
+like
+set
+STRONG
+accord
+belong
+blend
+chime
+complement
+conform
+correspond
+dovetail
+enjoy
+fit
+jibe
+match
+mesh
+relish
+square
+suit
+WEAK
+be adapted for
+be designed for
+Antonyms
+STRONG
+differ
+disagree
+disconnect
+dislike
+hate
+refuse
+WEAK
+mismatch
+VERB
+die, collapse
+Synonyms
+STRONGEST
+break
+drop
+fail
+finish
+give
+spend
+STRONG
+bend
+cave
+conclude
+consume
+crumble
+decease
+decline
+demise
+depart
+deplete
+devour
+dissipate
+exhaust
+expend
+expire
+fritter
+perish
+squander
+succumb
+terminate
+waste
+weaken
+worsen
+yield
+WEAK
+fold up
+pass away
+pass on
+run through
+use up
+Antonyms
+STRONG
+begin
+build
+commence
+improve
+WEAK
+be born
+stay
+stop
+VERB
+elapse
+Synonyms
+STRONGEST
+pass
+STRONG
+expire
+flow
+lapse
+transpire
+WEAK
+be spent
+pass away
+slip away
+waste away
+VERB
+endure
+Synonyms
+STRONGEST
+allow
+stand
+take
+STRONG
+abide
+bear
+brook
+let
+permit
+stomach
+suffer
+swallow
+tolerate
+WEAK
+consent to
+put up with
+Antonyms
+STRONGEST
+disallow
+refuse
+reject
+STRONG
+shun
+stop
+WEAK
+break
+stay
+surrender
+Example Sentences
+Examples are provided to illustrate real-world usage of words in context. Any
+            opinions expressed do not reflect the views of Dictionary.com.
+See Examples For:
+go
+goes
+went
+gone
+going
+But he decided to try one take and Navarrette burrowed into Nikki&rsquo;s tragedy so convincingly that he had no choice but to
+go
+with it.
+From
+Los Angeles Times
+●
+Nov. 23, 2026
+&quot;We should
+go
+as fast as we can&quot; on AI, he said.
+From
+Barron&#039;s
+●
+Nov. 23, 2026
+Please
+go
+into the kitchen and see if your dog is making an omelet and speaking French.
+From
+The Wall Street Journal
+●
+Nov. 23, 2026
+By using AI to analyze existing medical images, researchers may be able to identify patterns of age-related disease that would otherwise
+go
+unnoticed.
+From
+Science Daily
+●
+Nov. 23, 2026
+&ldquo;I wanted to
+go
+with my friends. Sukie&rsquo;s son, Emery, was my best friend. Even picking cotton together, faint from heat, Emery made me laugh.&rdquo;
+From
+"Will’s Race for Home" by Jewell Parker Rhodes
+As the main creditor, Gordon Brothers would be first in line to get paid back if the business
+goes
+under - but its suppliers are not.
+From
+BBC
+●
+Nov. 23, 2026
+&ldquo;I&rsquo;m very disciplined in what I&rsquo;m doing, but then sometimes it
+goes
+dark, like it&rsquo;s not good. So it&rsquo;s &lsquo;hey, dull boy, playing with sharp toys&hellip;&rsquo;&rdquo;
+From
+Los Angeles Times
+●
+Nov. 23, 2026
+There&rsquo;s a lot, in fairness, that
+goes
+into making up the puzzle of any person&rsquo;s life story.
+From
+MarketWatch
+●
+Nov. 23, 2026
+&ldquo;I&rsquo;m exhausted. My alarm
+goes
+off at 6 a.m., and I have a 50-minute commute.&rdquo;
+From
+The Wall Street Journal
+●
+Nov. 22, 2026
+Curl under the covers and hope everything
+goes
+away.
+From
+"The Brightwood Code" by Monica Hesse
+When the sale
+went
+through, they held a big party with lots of architects in attendance, though not Lautner, who died a few years later, she said.
+From
+Los Angeles Times
+●
+Nov. 23, 2026
+&quot;Security rushed in and
+went
+straight to the pit. We only left as we were starting to feel unsafe and not 100 per cent well.&quot;
+From
+BBC
+●
+Nov. 23, 2026
+The Hoosier coach Curt Cignetti blew a mild gasket last week over criticism of his team&rsquo;s strength of schedule, and then his team
+went
+out and lost on the road to Washington.
+From
+The Wall Street Journal
+●
+Nov. 23, 2026
+Kindness is free and it&rsquo;s often key to understanding what
+went
+wrong.
+From
+MarketWatch
+●
+Nov. 23, 2026
+I just felt it, certain that when his eyes
+went
+down, they were a bit crinkled, or that his lips tipped up just a tiny bit.
+From
+"Legendary Frybread Drive-In" by Cynthia Leitich Smith
+As chip costs have
+gone
+up, &ldquo;we have had to pass those price increases through to customers,&rdquo; said Nirav Patel, chief executive of personal-computer maker Framework Computer.
+From
+The Wall Street Journal
+●
+Nov. 23, 2026
+Indeed, in the 509 instances of a team receiving one or more red cards in the first half of a Premier League match, they have
+gone
+on to win just 88 times.
+From
+BBC
+●
+Nov. 22, 2026
+But only the second part has
+gone
+according to plan.
+From
+The Wall Street Journal
+●
+Nov. 22, 2026
+&quot;They've not
+gone
+yet, even though they're dead. I don't know how I'll be once I get that phone call from Laura to say 'they were cremated yesterday'.&quot;
+From
+BBC
+●
+Nov. 22, 2026
+By then, Phineas's actual brain was long
+gone,
+but Dr. Harlow knew enough gross anatomy to calculate that the iron had passed through the very front of the left frontal cortex.
+From
+"Phineas Gage" by John Fleischman
+Some fans have complained about security and a lack of searches
+going
+in to the concert.
+From
+BBC
+●
+Nov. 23, 2026
+As wacky as it is, it&rsquo;s only
+going
+to get wackier next season.
+From
+The Wall Street Journal
+●
+Nov. 23, 2026
+I have to just keep telling myself &lsquo;just keep
+going
+.&rsquo;
+From
+Los Angeles Times
+●
+Nov. 23, 2026
+Investors, right now, find themselves wrestling with a more pressing dilemma: how to stop the stars of the artificial-intelligence rally from
+going
+dark.
+From
+MarketWatch
+●
+Nov. 23, 2026
+If they knew today was their last day, what would they rather be doing than
+going
+to school?
+From
+"Split the Sky" by Marie Arnold
+Vocabulary lists containing
+go
+Scrabble: Two-Letter Words
+Looking to grow your vocabulary? Check out this interactive, curated word list from our team of English language specialists at
+Vocabulary.com
+– one of over 17,000 lists we've built to help learners worldwide!
+Random Word
+Spin the wheel and learn a new word!
+Get a word
+Related Words
+Words related to
+go
+are not direct synonyms, but are associated with the word
+go
+. Browse related words to learn more about word associations.
+altercation
+approaches
+approach
+argument
+arguments
+attempt
+attempts
+befall
+befallen
+befit
+befell
+belong
+blew
+blow
+bounce
+bouts
+bouts
+bout
+bout
+brook
+calling
+came off
+chance
+circumstance
+click
+clear out
+cohere
+collapse
+come
+come off
+coming off
+conform
+conforms
+consume
+contests
+contest
+crack
+cruise
+decease
+defected
+defect
+defects
+depart
+desert
+deserting
+develop
+develops
+digest
+digested
+disappear
+dovetail
+effort
+efforts
+endeavor
+endeavors
+energy
+energies
+enjoy
+enjoys
+enthusiasm
+exited
+exit
+expire
+fare
+faring
+fared
+fighting
+finish
+fit
+fling
+flourished
+flourish
+function
+functioned
+get along
+get
+gave
+functions
+get off
+get-up-and-go
+get out
+gets along
+give
+goes together
+goes with
+going with
+going together
+go over
+got along
+got
+got off
+go together/go with
+gotten off
+gotten out
+happening
+hazard
+inning
+jibe
+journeyed
+journey
+journeys
+last
+leave
+leaves
+life
+lives
+made off
+make
+make off
+makes
+melt
+move
+moves
+occasion
+occasions
+occurring
+occur
+occurs
+occurred
+opening
+oomph
+opportunity
+operates
+opportunities
+operate
+panned out
+panning out
+pan out
+part
+pass
+pass
+pep
+peregrinate
+perish
+polemic
+popped
+pop
+potency
+pulled out
+pull out
+pursuit
+pushing on
+pushed off
+pushed off
+push off/push on
+push off
+pushes on
+push
+pushing off
+pushing off
+pushes
+pushes off
+pushes off
+pushed on
+quit
+race
+races
+ran
+ran
+ran
+ranged
+range
+ranges
+ran out
+reach
+refer
+referred
+relish
+relishes
+repair
+resorted
+resorting
+resort
+relished
+retire
+retreat
+retreats
+ride
+ridden
+risen
+rise
+run
+run
+run
+running out
+run out
+runs out
+scuffle
+shift
+shot
+shove off
+solicit
+sound
+speak
+speaks
+spell
+spend
+sprightliness
+stab
+stick
+stretch
+succumb
+suit
+suiting
+superannuate
+support
+supports
+sustain
+sustains
+take
+take off
+takes off
+takes
+tend
+tends
+term
+test
+tests
+time
+tolerates
+tolerate
+took off
+tour
+transpire
+transpired
+travel
+travelled
+trick
+trial
+tries
+trot
+trotted
+try
+turn
+turn
+turn
+utter
+uttering
+vigorousness
+vigor
+verve
+vitality
+void
+walk
+walks
+wend
+wend
+went
+went
+went together
+whack
+went over
+went with
+whirl
+withdrew
+withdraw
+work
+works out
+work out
+yielded
+yield
+zing
+zip
+Word of the Day
+pulchritude
+[
+puhl
+-kri-tood]
+Get the Word of the Day
+Over 500,000 expert-authored dictionary and thesaurus entries
+Entry list
+Careers
+Contact us
+Help
+Cookies, terms &amp privacy
+IXL Learning's Dictionary Media Group reaches over 500,000,000 learners each year
+Comprehensive resource for word definitions and usage
+Adaptive learning for English vocabulary
+Fun daily word games
+English dictionary and learning for Spanish speakers
+Spanish-English dictionary, translator, and learning
+French-English dictionary, translator, and learning
+Immersive learning for 25 languages
+Comprehensive K-12 personalized learning
+Marketplace for millions of educator-created resources
+35,000+ worksheets, games, and lesson plans
+Fun educational games for kids
+Trusted tutors for 300+ subjects
+Math games and learning resources for kids
+&copy; 2026 Dictionary Media Group, Inc., a division of IXL Learning
+/* Scoped to the same breakpoint the Adhesion slot uses, so the offset stops
+       applying the instant a window is narrowed rather than at the next page
+       load: below 768px the In-Screen unit is hidden and the mobile Adhesion is
+       back, and space still reserved for GumGum would leave the floating player
+       hovering in a gap above the adhesion.
+       The body attribute means the offset only applies while an In-Screen unit
+       is really occupying the bottom of the viewport. Loading the script is not
+       enough: it can be blocked, return no fill, or the unit can be closed, and
+       in each of those cases reserving 105px would leave the player hovering
+       over nothing. See inScreenIsOnScreen below.
+       The `translate` property rather than `transform`: the individual property
+       composes with whatever `transform` AnyClip sets on the player, instead of
+       replacing it. Writing `transform` here would silently discard the vendor's
+       own positioning, and would override a close animation that slides the
+       player away. !important because AnyClip writes these inline. */
+    @media only screen and (min-width: 768px) {
+      body[data-gumgum-inscreen] [data-gumgum-anyclip-float] {
+        translate: 0 -105px !important;
+      }
+    }
+
+    /* Below the breakpoint the mobile Adhesion is the unit on screen, and GumGum
+       offers no way to unload an In-Screen unit once requested -- so hide its
+       container. Doing that here, keyed to an attribute of our own, means never
+       writing to GumGum's inline display: if the vendor collapses or closes the
+       unit while we are narrow, stashing and restoring that value on widening
+       could resurrect an ad the user had already dismissed. Above the breakpoint
+       this rule simply does not apply, so the vendor's own display always wins.
+       `not all and (min-width: 768px)` is the exact complement of the query
+       above, leaving no fractional-width gap between the two.
+       !important so it beats the inline display GumGum writes on that node. */
+    @media not all and (min-width: 768px) {
+      [data-gumgum-container] {
+        display: none !important;
+      }
+    }
+(function () {
+      /* The DCOM/TCOM apps webview these pages and strip the ad formats that
+         overlay the viewport: MobileAppHideSiteHeaderFooter.js removes
+         .box-additional-adhesion for these user agents. In an app webview wide
+         enough to clear the breakpoint below, In-Screen would otherwise load as a
+         stand-in for the very unit the app just removed -- and this tag renders
+         ahead of that bundle in base.tag, so waiting for it is not an option.
+         The user agent cannot change mid-page, so bail out for good.
+         These strings are duplicated from that file deliberately: it is a Vite
+         module and an inline script cannot import from it. Keep the two in step. */
+      const ua = window.navigator && typeof window.navigator.userAgent === 'string'
+        ? window.navigator.userAgent
+        : '';
+      if (ua.indexOf('dcom ios')
+-1 || ua.indexOf('dcom android')
+-1) {
+        return;
+      }
+
+      const breakpoint = window.matchMedia('(min-width: 768px)');
+
+      /* Load once, the first time we are at or above the breakpoint -- which can
+         be a later resize, not only page load. Widening has to load too: CSS
+         hides the mobile Adhesion slot from 768px up, so a window opened narrow
+         and then widened would otherwise be left with neither unit. Never load
+         below the breakpoint, where the Adhesion is the unit on screen. */
+      let gumgumLoaded = false;
+
+      function loadGumGum() {
+        if (gumgumLoaded) {
+          return;
+        }
+        gumgumLoaded = true;
+        window.ggv2id = 'v2k4tsci';
+        const services = document.createElement('script');
+        services.type = 'text/javascript';
+        services.async = true;
+        services.src = 'https://js.gumgum.com/services.js';
+        document.head.appendChild(services);
+      }
+
+      /* GumGum measures the viewport once, when it requests the ad, and its
+         client API exposes no way to unload, re-request or re-evaluate an
+         In-Screen unit afterwards -- so a window narrowed past the breakpoint
+         would otherwise leave the unit on screen, overlapping the mobile
+         Adhesion slot that CSS has just brought back. GUMGUM.container is
+         GumGum's own node and the only handle on it: its id is generated per
+         pageview, so there is nothing stable to write a selector against. All we
+         do is stamp our own attribute on it and let the stylesheet above hide it
+         below the breakpoint -- the vendor's inline display is never touched.
+         Note this hides, it does not unload -- the impression is already served. */
+      const INSCREEN_ATTR = 'data-gumgum-inscreen';
+      const CONTAINER_ATTR = 'data-gumgum-container';
+      const MIN_UNIT_WIDTH = 100;
+      const MIN_UNIT_HEIGHT = 20;
+
+      let observedContainer = null;
+      let syncQueued = false;
+
+      /* Whether an In-Screen unit is really occupying the bottom of the viewport.
+         That the script loaded proves nothing: it can be blocked, it can return
+         no fill, and the unit can be closed or collapsed later -- in each of
+         those cases the 105px offset would strand the AnyClip player above an
+         empty gap. The unit is viewport-anchored, so look for a visible
+         fixed-positioned box of real size inside GumGum's container: the same
+         shape of check used for the AnyClip player below, and for the same
+         reason -- the vendor's own class names are not ours to depend on.
+         The box also has to actually intersect the viewport. A unit closed by
+         being translated out of view keeps its size and its fixed position, so
+         measuring the box alone would read it as still on screen and strand the
+         player over the empty space it left behind. */
+      function inScreenIsOnScreen(container) {
+        if (!breakpoint.matches || window.getComputedStyle(container).display === 'none') {
+          return false;
+        }
+        const nodes = container.querySelectorAll('*');
+        for (let i = 0; i
+0 && rect.right
+0 &&
+            rect.top
+whenever its script finishes, so
+         watch for that rather than polling for a fixed window: on a slow
+         connection it can arrive long after any timeout we would pick, and if it
+         lands while we are below the breakpoint the unit would appear over the
+         Adhesion -- the exact collision this is here to prevent.
+         This stays connected for the life of the page. unitObserver watches the
+         container's subtree and so cannot see the container itself being removed
+         from
+; only this one can, and a close that removes the node has to
+         clear the offset. Direct children of
+only, so it stays cheap. */
+      const containerObserver = new MutationObserver(queueSync);
+      containerObserver.observe(document.body, { childList: true });
+      const unitObserver = new MutationObserver(queueSync);
+
+      breakpoint.addEventListener('change', function () {
+        if (breakpoint.matches) {
+          loadGumGum();
+        }
+        queueSync();
+      });
+
+      if (breakpoint.matches) {
+        loadGumGum();
+      }
+
+      /* AnyClip names its own DOM with an `ac-` prefix, not anything we control,
+         so we watch for the descendant it switches to position:fixed rather than
+         matching a vendor class name that could be renamed under us. It floats
+         in place -- the player stays inside our wrapper -- so scoping the scan
+         and the observer to the wrapper is enough. */
+      /* A data attribute, not a class or an inline style: those two are the
+         observer's attributeFilter below, so writing either would re-trigger
+         the observer on every mark. */
+      const FLOAT_ATTR = 'data-gumgum-anyclip-float';
+
+      const wrapper = document.querySelector('.box-additional-anyclip');
+      if (!wrapper) {
+        return;
+      }
+
+      let scanQueued = false;
+
+      function mark(el) {
+        if (window.getComputedStyle(el).position === 'fixed') {
+          el.setAttribute(FLOAT_ATTR, '');
+        } else if (el.hasAttribute(FLOAT_ATTR)) {
+          el.removeAttribute(FLOAT_ATTR);
+        }
+      }
+
+      function scan() {
+        scanQueued = false;
+        const descendants = wrapper.querySelectorAll('*');
+        for (let i = 0; i
+{"body":"\u003Cb\u003EPulchritude \u003C/b\u003Eis a formal word for physical beauty. Its sound may not strike everyone as especially graceful, which gives it a funny contrast to what it describes. Calling someone a person of great \u003Cb\u003Epulchritude \u003C/b\u003Eis a great compliment... if they know what it means.","dateSlug":"pulchritude-2026-11-23","definition":"physical beauty","displayDate":"November 23, 2026","exampleSentence":"All the courtiers were awestruck by the queen\u0027s \u003Cb\u003Epulchritude\u003C/b\u003E during the grand celebration.","headword":"pulchritude","heroArticle":{"blurb":"If your friend says, \"the library is open,\" brace yourself. The reading is about to begin.","header":"What Is \"Reading\" in Slang? ","imageUrl":"https://www.dictionary.com/e/wp-content/uploads/2026/06/03203815/readingglassessquare.webp","url":"https://www.dictionary.com/culture/slang/reading"},"id":20261123,"partOfSpeech":"noun","pronunciation":{"audio":{"mpeg":"p/pulchritude/pulchritude-FNr3lE.mp3"},"phonetic":{"html":"\u003Cb\u003Epuhl\u003C/b\u003E-kri-tood"}},"slug":"pulchritude","subject":"\"Pulchritude\" Is Beauty by Another Name"}
+{"page_total_definition_count":10,"isDictionarySite":false,"mixpanelProjectToken":"7ad09e902154fc1872a50d2af3b6ebdd","num_examples_shown":5}
+by dictionary.com
+Just like flashcards, but way more fun
+Don't take our word for it. Leave the boring studying behind and join VocabTrainer today. You'll learn even faster and never look back.
+Take me to Vocabulary.com
+window.SD_PREBID_FILE_URL = '//cmas.sdcdns.com/prebid-min.js';
+      window.SD_GEO_CODE = '-';
+      window.fetch('/api/country-code').then(res
+res.json()).then(data
+window.SD_GEO_CODE = data.countryCode || '-').catch(()
+{});
+window._qevents = window._qevents || [];
+      (function() {
+        var elem = document.createElement('script');
+        elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";
+        elem.async = true;
+        elem.type = "text/javascript";
+        var scpt = document.getElementsByTagName('script')[0];
+        scpt.parentNode.insertBefore(elem, scpt);
+      })();
+      window._qevents.push({
+        qacct:"p-J6UREPaB79qHH"
+      });
