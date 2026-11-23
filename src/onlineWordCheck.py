@@ -49,4 +49,3 @@ def findWordTypes(wordEntry):
                 types += ["determiners"]
     return types
 
-findWord("go")

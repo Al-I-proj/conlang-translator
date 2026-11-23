@@ -52,13 +52,13 @@ for line in f:
 modal = ["will", "may", "can", "shall", "must", "ought", "do", "need", "dare", "had better", "used"]
 # [I, you/we/they, he/she, infinative]
 irregularPresent = {
-    "am": ["be", "1st sing", "Present"],
-    "are": ["be", "", "Present"],
-    "is": ["be", "3rd sing", "Present"],
-    "do": ["do", "", "Present"],
-    "does": ["do", "3rd sing", "Present"],
-    "have": ["have", "", "Present"],
-    "has": ["have", "3rd sing", "Present"]
+    "am": wordInfo("be", "verbs", {"verbs":["1st sing"]}, {"verbs":["Present"]}),
+    "are": wordInfo("be", "verbs", {"verbs":["2nd sing", "1st plur", "2nd plur", "3rd plur"]}, {"verbs":["Present"]}),
+    "is": wordInfo("be", "verbs", {"verbs":["3rd sing"]}, {"verbs":["Present"]}),
+    "do": wordInfo("do", "verbs", {"verbs":["1st sing", "2nd sing", "1st plur", "2nd plur", "3rd plur"]}, {"verbs":["Present"]}),
+    "does": wordInfo("be", "verbs", {"verbs":["3rd sing"]}, {"verbs":["Present"]}),
+    "have": wordInfo("do", "verbs", {"verbs":["1st sing", "2nd sing", "1st plur", "2nd plur", "3rd plur"]}, {"verbs":["Present"]}),
+    "has": wordInfo("have", "verbs", {"verbs":["3rd sing"]}, {"verbs":["Present"]}),
 }
 auxilaryVerbs = ["be", "can", "could", "dare", "do", "have", "may",
                  "might", "mote", "must", "need", "ought", "shall",
@@ -264,66 +264,74 @@ def identifySentence(sentence):
     return 
 
 def checkVariations(word):
-    s = [wordInfo("", "", "", "")] 
+    s = []
     if word[0] in words:
         letterSection = words[word[0]]
         if word in letterSection:
-            if "nouns" in letterSection:
-                s = [word, ["sing"], ["nouns"]]
+            if "nouns" in letterSection[word]:
+                s += wordInfo(word, ["nouns"])
             for wt in ["verbs", "adverbs", "prepositions", "adjectives", "conjugations", "interjections"]:
-                s[1] += [""]
-                s[2] += [wt]
-        elif word[-1] == "s" and word[:-1] in letterSection:
-            if "n" in letterSection:
-                if "v" in letterSection:
-                    return wordInfo(word[:-2], ["plur", "3rd sing"], ["nouns", "verbs"], ["", "present"])
+                if wt in letterSection[word]:
+                    s[-1].wt += [wt]
+        if word[-1] == "s" and word[:-1] in letterSection:
+            if "n" in letterSection[word[:-1]]:
+                if "v" in letterSection[word[:-1]]:
+                    s += [wordInfo(word[:-1], ["nouns", "verbs"], {"nouns":["plur"], "verbs":["3rd sing"]}, {"verbs":["present"]})]
                 else:
-                    return wordInfo(word[:-2], ["plur"], ["nouns"], [""])
-        elif len(word) > 2:
+                    s += [wordInfo(word[:-1], ["nouns"], {"nouns":["plur"]})]
+            elif "v" in letterSection[word[:-1]]:
+                s += [wordInfo(word[:-1], ["verbs"], {"verbs":["3rd sing"]}, {"verbs":["present"]})]
+        if len(word) > 2:
             if word[-2:] == "es":
                 if word[:-2] in letterSection:
-                    return [word[:-2], ["plur"], ["n"]]
+                    s += [wordInfo(word[:-2])]
+                    if "n" in letterSection[word[:-2]]:
+                        s[-1].wt += ["nouns"]
+                        s[-1].agreement["nouns"] = ["plur"]
+                    if "v" in letterSection[word[:-2]]:
+                        s[-1].wt += ["verbs"]
+                        s[-1].agreement["verbs"] = ["3rd sing"]
+                        s[-1].wt_variant["verbs"] = ["present"]
                 if word[-3] == "i" and word[:-3] + "y" in letterSection:
                     s[0] = word[:-3] + "y"
-                    if "n" in words[word]:
-                        s[1] += ["plur"]
-                        s[2] += ["nouns"]
-                    if "v" in words[word]:
-                        s[1] += ["3rd sing"]
-                        s[2] += ["verbs"]
+                    s += wordInfo(word[:-3] + "y")
+                    if "n" in letterSection[word]:
+                        s[-1].wt += ["nouns"]
+                        s[-1].agreement["nouns"] = ["plur"]
+                    if "v" in letterSection[word]:
+                        s[-1].wt += ["verbs"]
+                        s[-1].agreement = ["3rd sing"]
+                        s[-1].wt_variant = ["present"]
+            s += unconjugate(word)
     return s
     
 def unconjugate(verb):
-    modal = ["will", "may", "can", "shall", "must", "ought", "do", "need", "dare", "had better", "used"]
-    # [I, you/we/they, he/she, infinative]
-    irregularPresent = {
-        "am": ["be", "1st sing", "Present"],
-        "are": ["be", "", "Present"],
-        "is": ["be", "3rd sing", "Present"],
-        "do": ["do", "", "Present"],
-        "does": ["do", "3rd sing", "Present"],
-        "have": ["have", "", "Present"],
-        "has": ["have", "3rd sing", "Present"]
-    }
-
+    s = []
     if verb in modal:
-        return [verb, "", ""]
+        s += [wordInfo(verb, ["verbs"], 
+                       {"verbs":["1st sing", "2nd sing", "3rd sing", "1st plur", "2nd plur", "3rd plur"]},
+                       {"verbs":["Present"]})]
     if verb in irregularPresent:
-        return irregularPresent[verb]
+        s += [irregularPresent[verb]]
     if verb in irregularPastSimple and verb in irregularPastParticiple:
-        return [irregularPastSimple[verb], "", "Past"]
+        s += [wordInfo(verb, ["verbs"], {},
+                       {"verbs":["Past Simple", "Past Participle"]})]
     if verb in irregularPastSimple:
-        return [irregularPastSimple[verb], "", "Past Simple"]
+        s += [wordInfo(verb, ["verbs"], {},
+                       {"verbs":["Past Simple"]})]
     if verb in irregularPastParticiple:
-        return [irregularPastParticiple[verb], "", "Past Participle"]
+        s += [wordInfo(verb, ["verbs"], {}, 
+                       {"verbs":["Past Participle"]})]
     if verb in words or "to " + verb in words:
-        return [verb, "", "Present Simple"]
+        if verb not in modal:
+            s += [wordInfo(verb, ["verbs"], {}, 
+                           {"verbs":"Present Simple"})]
     if verb[-1] == "s" and verb[:-1] in words or "to " + verb[:-1] in words:
-        return [verb[:-1], "3rd sing", "Present Simple"]
+        s += [wordInfo(verb[:-1], ["verbs"], {"verbs":["3rd sing"]}, {"verbs":"Present"})]
     if verb[-2:] == "ed" and verb[:-2] in words or "to " + verb[:-2] in words:
-        return [verb[:-2], "", "Past Simple"]
+        s += [wordInfo(verb[:-1], ["verbs"], {}, {"verbs":["Past Simple"]})]
 
-    return ["", "", ""]
+    return s
 
     
     contractable = {
