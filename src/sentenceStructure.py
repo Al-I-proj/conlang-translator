@@ -347,6 +347,9 @@ def nounVariants(noun):
         return []
     letterSection = words[noun[0]]
     s = []
+    uniquePlurals = {"dice":"die", "people":"person", "penny":"pence"}
+    if noun in uniquePlurals:
+        return [wordInfo(uniquePlurals[noun], ["nouns"], {"nouns":["plur"]})]
     if noun in letterSection:
         singIsPlurEndings = ["craft", "fish"]
         singIsPlur = False
@@ -364,58 +367,58 @@ def nounVariants(noun):
         if len(noun) > 1:
             if noun[:-1] in letterSection:
                 if "nouns" in letterSection[noun[:-1]]:
-                    s += [wordInfo(noun[:-1], ["nouns"], {"nouns":"plur"})]
+                    s += [wordInfo(noun[:-1], ["nouns"], {"nouns":["plur"]})]
         if len(noun) > 2:
             if noun[-2] == "e":
                 if noun[:-2] in letterSection:
                     if "nouns" in letterSection[noun[:-2]]:
-                        s += [wordInfo(noun[:-2], ["nouns"], {"nouns":"plur"})]
+                        s += [wordInfo(noun[:-2], ["nouns"], {"nouns":["plur"]})]
                 if noun[:-2] + "is" in letterSection:
                     if "nouns" in letterSection[noun[:-2] + "is"]:
-                        s += [wordInfo(noun[:-2] + "is", ["nouns"], {"nouns":"plur"})]
+                        s += [wordInfo(noun[:-2] + "is", ["nouns"], {"nouns":["plur"]})]
         if len(noun) > 3:
             if noun[-3:] == "ies":
                 if noun[:-3] + "y" in letterSection:
                     if "nouns" in letterSection[noun]:
-                        s += [wordInfo(noun[:-3] + "y", ["nouns"], {"nouns":"plur"})]
+                        s += [wordInfo(noun[:-3] + "y", ["nouns"], {"nouns":["plur"]})]
     if len(noun) > 1:
         if noun[-1] == "i":
             if noun[:-1] + "us" in letterSection:
                 if "nouns" in letterSection[noun[:-1] + "us"]:
-                    s += [wordInfo(noun[:-1] + "us", ["nouns"], {"nouns":"plur"})]
+                    s += [wordInfo(noun[:-1] + "us", ["nouns"], {"nouns":["plur"]})]
         if noun[-1] == "a":
             if noun[:-1] + "on" in letterSection:
                 if "nouns" in letterSection[noun[:-1] + "on"]:
-                    s += [wordInfo(noun[:-1] + "on", ["nouns"], {"nouns":"plur"})]
+                    s += [wordInfo(noun[:-1] + "on", ["nouns"], {"nouns":["plur"]})]
         if noun[-1] == "i":
             if noun[:-1] + "o" in letterSection:
                 if "nouns" in letterSection[noun[:-1] + "o"]:
-                    s += [wordInfo(noun[:-1] + "o", ["nouns"], {"nouns":"plur"})]
+                    s += [wordInfo(noun[:-1] + "o", ["nouns"], {"nouns":["plur"]})]
 
     if len(noun) > 2:
         if noun[-2:] == "en":
             if noun[:-2] in letterSection:
                 if "nouns" in letterSection[noun[:-2]]:
-                    s += [wordInfo(noun[:-2], ["nouns"], {"nouns":"plur"})]
+                    s += [wordInfo(noun[:-2], ["nouns"], {"nouns":["plur"]})]
             if noun[:-2] + "an" in letterSection:
                 if "nouns" in letterSection[noun[:-2] + "an"]:
-                    s += [wordInfo(noun[:-2] + "an", ["nouns"], {"nouns":"plur"})]
+                    s += [wordInfo(noun[:-2] + "an", ["nouns"], {"nouns":["plur"]})]
         if noun[-2:] == "ae":
             if noun[:-1] in letterSection:
                 if "nouns" in letterSection[noun[:-1]]:
-                    s += [wordInfo(noun[:-1], ["nouns"], {"nouns":"plur"})]
+                    s += [wordInfo(noun[:-1], ["nouns"], {"nouns":["plur"]})]
         if noun[-2:] == "im":
             if noun[:-2] in letterSection:
                 if "nouns" in letterSection[noun[:-2]]:
-                    s += [wordInfo(noun[:-2], ["nouns"], {"nouns":"plur"})]
+                    s += [wordInfo(noun[:-2], ["nouns"], {"nouns":["plur"]})]
     if len(noun) > 3:
         if noun[-3:] == "ren":
             if noun[:-3] in letterSection:
                 if "nouns" in letterSection[noun]:
-                    s += [wordInfo(noun[:-2], ["nouns"], {"nouns":"plur"})]
+                    s += [wordInfo(noun[:-2], ["nouns"], {"nouns":["plur"]})]
         if noun[-3:-1] == "ee" and noun[:-3] + "oo" + noun[-1] in letterSection:
             if "nouns" in letterSection[noun[:-3] + "oo" + noun[-1]]:
-                s += [wordInfo(noun[:-3] + "oo" + noun[-1], ["nouns"], {"nouns":"plur"})]
+                s += [wordInfo(noun[:-3] + "oo" + noun[-1], ["nouns"], {"nouns":["plur"]})]
         if noun[-3:] == "ice" and noun[:-3] + "ouse" in letterSection:
             if "nouns" in letterSection[noun[:-3] + "ouse"]:
                 s += [wordInfo(noun[:-3] + "ouse", ["nouns"], {"nouns":["plur"]})]
@@ -533,4 +536,26 @@ def testUnconjugate():
             print()
     print("PASSED: " + str(passed) + " / " + str(len(testPhrases)))
 
-testUnconjugate()
+def testNounVariants():
+    testPhrases = ["words", "dice", "word", "bison", "indices"]
+    answers = {"words": [wordInfo("word", ["nouns"], {"nouns":["plur"]})],
+               "dice": [wordInfo("die", ["nouns"], {"nouns":["plur"]})],
+               "word": [wordInfo("word", ["nouns"], {"nouns":["sing"]})],
+               "bison": [wordInfo("bison", ["nouns"], {"nouns":["sing", "plur"]})],
+               "indices": [wordInfo("index", ["nouns"], {"nouns":["plur"]})]
+    }
+    passed = 0
+    failed = 0
+    for i in range(len(testPhrases)):
+        t = nounVariants(testPhrases[i])
+        if t == answers[testPhrases[i]]:
+            passed += 1
+        else:
+            failed += 1
+            print("\tTEST: " + testPhrases[i])
+            print("\tRESULT: " + str(t))
+            print("\tEXPECTED: " + str(answers[testPhrases[i]]))
+            print()
+    print("PASSED: " + str(passed) + " / " + str(len(testPhrases)))
+
+testNounVariants()
