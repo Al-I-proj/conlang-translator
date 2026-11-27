@@ -9,6 +9,8 @@ class wordInfo:
 
     def __eq__(self, other):
         same = True
+        if type(other) != wordInfo:
+            return False
         
         return self.base == other.base and self.wt == other.wt and self.agreement == other.agreement and self.wt_variant == other.wt_variant
     def __str__(self):
@@ -23,8 +25,34 @@ class wordInfo:
                 s += str(self.wt_variant[w])
             else:
                 s += "NULL"
-            s += ")}"
+            s += ")}>"
         return s
+
+    def __repr__(self):
+        return str(self)
+
+    def addWT(self, wt):
+        self.wt += [wt]
+
+    def addAgreement(self, wt, agreement):
+        if wt in self.agreement:
+            self.agreement[wt] += [agreement]
+        else:
+            self.agreement[wt] = [agreement]
+
+    def addWTVariant(self, wt, wtVariant):
+        if wt in self.wt_variant:
+            self.wt_variant[wt] += [wtVariant]
+        else:
+            self.wt_variant[wt] = [wtVariant]
+
+    def addWordVariant(self, wt, agreement, wtVariant):
+        if wt not in self.wt:
+            self.wt += [wt]
+        self.addAgreement(wt, agreement)
+        self.addWTVariant(wt, wtVariant)
+
+
 auxVerbs = {
     "will" : "will",
 
@@ -52,17 +80,26 @@ for line in f:
 modal = ["will", "may", "can", "shall", "must", "ought", "do", "need", "dare", "had better", "used"]
 # [I, you/we/they, he/she, infinative]
 irregularPresent = {
-    "am": wordInfo("be", "verbs", {"verbs":["1st sing"]}, {"verbs":["Present"]}),
-    "are": wordInfo("be", "verbs", {"verbs":["2nd sing", "1st plur", "2nd plur", "3rd plur"]}, {"verbs":["Present"]}),
-    "is": wordInfo("be", "verbs", {"verbs":["3rd sing"]}, {"verbs":["Present"]}),
-    "do": wordInfo("do", "verbs", {"verbs":["1st sing", "2nd sing", "1st plur", "2nd plur", "3rd plur"]}, {"verbs":["Present"]}),
-    "does": wordInfo("be", "verbs", {"verbs":["3rd sing"]}, {"verbs":["Present"]}),
-    "have": wordInfo("do", "verbs", {"verbs":["1st sing", "2nd sing", "1st plur", "2nd plur", "3rd plur"]}, {"verbs":["Present"]}),
-    "has": wordInfo("have", "verbs", {"verbs":["3rd sing"]}, {"verbs":["Present"]}),
+    "am": wordInfo("be", ["verbs"], {"verbs":["1st sing"]}, {"verbs":["Present"]}),
+    "are": wordInfo("be", ["verbs"], {"verbs":["2nd sing", "1st plur", "2nd plur", "3rd plur"]}, {"verbs":["Present"]}),
+    "is": wordInfo("be", ["verbs"], {"verbs":["3rd sing"]}, {"verbs":["Present"]}),
+    "do": wordInfo("do", ["verbs"], {"verbs":["1st sing", "2nd sing", "1st plur", "2nd plur", "3rd plur"]}, {"verbs":["Present"]}),
+    "does": wordInfo("be", ["verbs"], {"verbs":["3rd sing"]}, {"verbs":["Present"]}),
+    "have": wordInfo("do", ["verbs"], {"verbs":["1st sing", "2nd sing", "1st plur", "2nd plur", "3rd plur"]}, {"verbs":["Present"]}),
+    "has": wordInfo("have", ["verbs"], {"verbs":["3rd sing"]}, {"verbs":["Present"]}),
 }
 auxilaryVerbs = ["be", "can", "could", "dare", "do", "have", "may",
                  "might", "mote", "must", "need", "ought", "shall",
                  "should", "will", "would"]
+
+irregularPlurals = {"people":"person", "dice":"die", "pence":"penny"}
+singIsPlurWords = []
+
+f = open("documents/singIsPlurNouns.txt", "r", encoding = "utf-8").read().split("\n")
+for line in f:
+    nouns = line.split("\t")
+    for noun in nouns:
+        singIsPlurWords += [noun.strip()]
 
 def englishWords():
     englishWords = {}
@@ -304,9 +341,109 @@ def checkVariations(word):
                         s[-1].wt_variant = ["present"]
             s += unconjugate(word)
     return s
-    
+
+def nounVariants(noun):
+    if noun[0] not in words:
+        return []
+    letterSection = words[noun[0]]
+    s = []
+    if noun in letterSection:
+        singIsPlurEndings = ["craft", "fish"]
+        singIsPlur = False
+        for ending in singIsPlurEndings:
+            if len(noun) > len(ending):
+                if noun[-len(ending):] == ending:
+                    singIsPlur = True
+        if noun in singIsPlurWords:
+            singIsPlur = True
+        if singIsPlur:
+            s += [wordInfo(noun, ["nouns"], {"nouns":["sing", "plur"]})]
+        elif "nouns" in letterSection[noun]:
+            s += [wordInfo(noun, ["nouns"], {"nouns":["sing"]})]
+    if noun[-1] == "s":
+        if len(noun) > 1:
+            if noun[:-1] in letterSection:
+                if "nouns" in letterSection[noun[:-1]]:
+                    s += [wordInfo(noun[:-1], ["nouns"], {"nouns":"plur"})]
+        if len(noun) > 2:
+            if noun[-2] == "e":
+                if noun[:-2] in letterSection:
+                    if "nouns" in letterSection[noun[:-2]]:
+                        s += [wordInfo(noun[:-2], ["nouns"], {"nouns":"plur"})]
+                if noun[:-2] + "is" in letterSection:
+                    if "nouns" in letterSection[noun[:-2] + "is"]:
+                        s += [wordInfo(noun[:-2] + "is", ["nouns"], {"nouns":"plur"})]
+        if len(noun) > 3:
+            if noun[-3:] == "ies":
+                if noun[:-3] + "y" in letterSection:
+                    if "nouns" in letterSection[noun]:
+                        s += [wordInfo(noun[:-3] + "y", ["nouns"], {"nouns":"plur"})]
+    if len(noun) > 1:
+        if noun[-1] == "i":
+            if noun[:-1] + "us" in letterSection:
+                if "nouns" in letterSection[noun[:-1] + "us"]:
+                    s += [wordInfo(noun[:-1] + "us", ["nouns"], {"nouns":"plur"})]
+        if noun[-1] == "a":
+            if noun[:-1] + "on" in letterSection:
+                if "nouns" in letterSection[noun[:-1] + "on"]:
+                    s += [wordInfo(noun[:-1] + "on", ["nouns"], {"nouns":"plur"})]
+        if noun[-1] == "i":
+            if noun[:-1] + "o" in letterSection:
+                if "nouns" in letterSection[noun[:-1] + "o"]:
+                    s += [wordInfo(noun[:-1] + "o", ["nouns"], {"nouns":"plur"})]
+
+    if len(noun) > 2:
+        if noun[-2:] == "en":
+            if noun[:-2] in letterSection:
+                if "nouns" in letterSection[noun[:-2]]:
+                    s += [wordInfo(noun[:-2], ["nouns"], {"nouns":"plur"})]
+            if noun[:-2] + "an" in letterSection:
+                if "nouns" in letterSection[noun[:-2] + "an"]:
+                    s += [wordInfo(noun[:-2] + "an", ["nouns"], {"nouns":"plur"})]
+        if noun[-2:] == "ae":
+            if noun[:-1] in letterSection:
+                if "nouns" in letterSection[noun[:-1]]:
+                    s += [wordInfo(noun[:-1], ["nouns"], {"nouns":"plur"})]
+        if noun[-2:] == "im":
+            if noun[:-2] in letterSection:
+                if "nouns" in letterSection[noun[:-2]]:
+                    s += [wordInfo(noun[:-2], ["nouns"], {"nouns":"plur"})]
+    if len(noun) > 3:
+        if noun[-3:] == "ren":
+            if noun[:-3] in letterSection:
+                if "nouns" in letterSection[noun]:
+                    s += [wordInfo(noun[:-2], ["nouns"], {"nouns":"plur"})]
+        if noun[-3:-1] == "ee" and noun[:-3] + "oo" + noun[-1] in letterSection:
+            if "nouns" in letterSection[noun[:-3] + "oo" + noun[-1]]:
+                s += [wordInfo(noun[:-3] + "oo" + noun[-1], ["nouns"], {"nouns":"plur"})]
+        if noun[-3:] == "ice" and noun[:-3] + "ouse" in letterSection:
+            if "nouns" in letterSection[noun[:-3] + "ouse"]:
+                s += [wordInfo(noun[:-3] + "ouse", ["nouns"], {"nouns":["plur"]})]
+        if noun[-3:] == "ata" and noun[:-2] in letterSection:
+            if "nouns" in letterSection[noun[:-2]]:
+                s += [wordInfo(noun[:-2], ["nouns"], {"nouns":["plur"]})]
+        
+    if len(noun) > 4:
+        if noun[-4:-2] == "ee" and noun[:-4] + "oo" + noun[-2:] in letterSection:
+            if "nouns" in letterSection[noun[:-4] + "oo" + noun[-2:]]:
+                s += [wordInfo(noun[:-4] + "oo" + noun[-2:], ["nouns"], {"nouns":"plur"})]
+        if noun[-4:] == "ices":
+            if noun[-3:] + "x" in letterSection:
+                if "nouns" in letterSection[noun[:-3] + "x"]:
+                    s += [wordInfo(noun[:-3] + "x", ["nouns"], {"nouns":["plur"]})]
+            if noun[-4:] + "ex" in letterSection:
+                if "nouns" in letterSection[noun[:-4] + "ex"]:
+                    s += [wordInfo(noun[:-4] + "ex", ["nouns"], {"nouns":["plur"]})]
+        if noun[-4:] == "eaux":
+            if noun[:-1] in letterSection:
+                if "nouns" in letterSection[noun[:-1]]:
+                    s += [wordInfo(noun[:-1], ["nouns"], {"nouns":["plur"]})]
+
+    return s
+
 def unconjugate(verb):
     s = []
+    letterSection = words[verb[0]]
     if verb in modal:
         s += [wordInfo(verb, ["verbs"], 
                        {"verbs":["1st sing", "2nd sing", "3rd sing", "1st plur", "2nd plur", "3rd plur"]},
@@ -325,24 +462,28 @@ def unconjugate(verb):
     if verb in words or "to " + verb in words:
         if verb not in modal:
             s += [wordInfo(verb, ["verbs"], {}, 
-                           {"verbs":"Present Simple"})]
-    if verb[-1] == "s" and verb[:-1] in words or "to " + verb[:-1] in words:
-        s += [wordInfo(verb[:-1], ["verbs"], {"verbs":["3rd sing"]}, {"verbs":"Present"})]
-    if verb[-2:] == "ed" and verb[:-2] in words or "to " + verb[:-2] in words:
-        s += [wordInfo(verb[:-1], ["verbs"], {}, {"verbs":["Past Simple"]})]
+                           {"verbs":["Present Simple"]})]
+    if len(verb) > 1:
+        if verb[-1] == "s" and verb[:-1] in letterSection:
+            s += [wordInfo(verb[:-1], ["verbs"], {"verbs":["3rd sing"]}, {"verbs":["Present"]})]
+
+    if len(verb) > 2:
+        if verb[-2:] == "ed" and verb[:-2] in letterSection:
+            s += [wordInfo(verb[:-2], ["verbs"], {}, {"verbs":["Past Simple"]})]
+    if len(verb) > 3:
+        if verb[-3:] == "ies" and verb[:-3] + "y" in letterSection or  "to " + verb[:-3] + "y" in letterSection:
+            s += [wordInfo(verb[:-3] + "y", ["verbs"], {"verbs":["3rd sing"]}, {"verbs":["Present"]})]
+
 
     return s
 
-    
-    contractable = {
-        "m": ["am"],
-        "re": ["are"],
-        "ve":["have"],
-        "d": ["did", "would"],
-        "ll": ["will", "shall"]
-    }
-
-
+def checkWord(word):
+    if word[0] not in words:
+        print("invalid letters")
+    if word in words[word[0]]:
+        print(words[word[0]][word])
+    else:
+        print(word + " is not in words")
 
 def testContrationsBreakdown():
     testPhrases = ["test with no contractions", "can't", "they're", "don't", "I'm", "I'd go", "I'd gone"]
@@ -371,3 +512,25 @@ def testContrationsBreakdown():
             print("\tEXPECTED: " + str(answers[testPhrases[i]]))
             print()
     print("PASSED: " + str(passed) + " / " + str(len(testPhrases)))
+
+def testUnconjugate():
+    testPhrases = ["am", "looks", "looked"]
+    answers = {"am": [wordInfo("be", ["verbs"], {"verbs":["1st sing"]}, {"verbs":["Present"]})],
+               "looks": [wordInfo("look", ["verbs"], {"verbs":["3rd sing"]}, {"verbs":["Present"]})],
+               "looked": [wordInfo("look", ["verbs"], {}, {"verbs":["Past Simple"]})],
+    }
+    passed = 0
+    failed = 0
+    for i in range(len(testPhrases)):
+        t = unconjugate(testPhrases[i])
+        if t == answers[testPhrases[i]]:
+            passed += 1
+        else:
+            failed += 1
+            print("\tTEST: " + testPhrases[i])
+            print("\tRESULT: " + str(t))
+            print("\tEXPECTED: " + str(answers[testPhrases[i]]))
+            print()
+    print("PASSED: " + str(passed) + " / " + str(len(testPhrases)))
+
+testUnconjugate()
